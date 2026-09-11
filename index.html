@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volvamos a conocernos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="aurora"></div>
+<canvas id="stars"></canvas>
+<div class="hearts" id="hearts"></div>
+
+<!-- ============ INTRO ============ -->
+<section class="screen active" id="intro">
+  <div class="glass intro-card">
+    <p class="eyebrow">para ti</p>
+    <h1 class="intro-title">Volvamos<br>a conocernos</h1>
+    <p class="intro-sub">Ya llevamos m&aacute;s de dos a&ntilde;os juntos. No porque no nos conozcamos &mdash; sino porque conocerse nunca se acaba. Toma esto como un juego para nosotros dos.</p>
+    <div class="name-field">
+      <input type="text" id="partnerName" placeholder="&iquest;C&oacute;mo te llamo hoy?" autocomplete="off">
+    </div>
+    <button class="btn primary" id="startBtn">Empezar</button>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="screen" id="menu">
+  <div class="menu-head">
+    <h2 class="hello" id="helloName">Hola.</h2>
+    <p class="menu-sub">Elige por d&oacute;nde quieres empezar. No hay orden correcto.</p>
+    <div class="counter-live glass" id="counterLive">
+      <p class="counter-label">Somos novios desde el 24 de febrero de 2024</p>
+      <div class="counter-units" id="counterUnits"></div>
+      <p class="counter-total" id="counterTotal"></p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <button class="glass card" data-go="quiz">
+      <span class="card-emoji">&#10022;</span>
+      <span class="card-title">Preguntas</span>
+      <span class="card-desc">De lo ligero a lo muy &iacute;ntimo. T&uacute; marcas el ritmo.</span>
+    </button>
+    <button class="glass card" data-go="memory">
+      <span class="card-emoji">&#9672;</span>
+      <span class="card-title">Memorama</span>
+      <span class="card-desc">Encuentra los pares. A ver qui&eacute;n tiene mejor memoria.</span>
+    </button>
+    <button class="glass card" data-go="roulette">
+      <span class="card-emoji">&#10042;</span>
+      <span class="card-title">Ruleta</span>
+      <span class="card-desc">G&iacute;rala y responde lo que salga. Sin pensarlo mucho.</span>
+    </button>
+    <button class="glass card" data-go="truefalse">
+      <span class="card-emoji">&#9680;</span>
+      <span class="card-title">&iquest;Nos conocemos?</span>
+      <span class="card-desc">Verdadero o falso sobre lo nuestro.</span>
+    </button>
+    <button class="glass card" data-go="would">
+      <span class="card-emoji">&#9880;</span>
+      <span class="card-title">&iquest;Qu&eacute; prefieres?</span>
+      <span class="card-desc">Dos caminos. Elige uno y cu&eacute;ntame por qu&eacute;.</span>
+    </button>
+    <button class="glass card" data-go="timeline">
+      <span class="card-emoji">&#10039;</span>
+      <span class="card-title">Nuestra historia</span>
+      <span class="card-desc">Los momentos que fuimos construyendo, como estrellas.</span>
+    </button>
+    <button class="glass card" data-go="reasons">
+      <span class="card-emoji">&#10059;</span>
+      <span class="card-title">Razones</span>
+      <span class="card-desc">Toca para descubrir cosas que amo de ti.</span>
+    </button>
+    <button class="glass card" data-go="gallery">
+      <span class="card-emoji">&#9635;</span>
+      <span class="card-title">Nuestras fotos</span>
+      <span class="card-desc">Un carrusel con nuestros momentos favoritos.</span>
+    </button>
+    <button class="glass card" data-go="letter">
+      <span class="card-emoji">&#9825;</span>
+      <span class="card-title">Al final</span>
+      <span class="card-desc">Algo que quiero decirte. &Aacute;brelo cuando quieras.</span>
+    </button>
+  </div>
+
+  <p class="secret-hint" id="secretHint">&#10022;</p>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="screen" id="quiz">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <div class="level-picker" id="levelPicker">
+    <h2 class="section-title">Preguntas</h2>
+    <p class="section-sub">Cada nivel se pone un poco m&aacute;s profundo. Entra al que te lata.</p>
+    <div class="levels">
+      <button class="glass level" data-level="0"><span class="level-dot lvl0"></span>Ligeras<em>gustos, recuerdos, cosas del d&iacute;a a d&iacute;a</em></button>
+      <button class="glass level" data-level="1"><span class="level-dot lvl1"></span>Un poco m&aacute;s<em>sue&ntilde;os, miedos, lo que llevas dentro</em></button>
+      <button class="glass level" data-level="2"><span class="level-dot lvl2"></span>&Iacute;ntimas<em>lo que casi nunca decimos en voz alta</em></button>
+      <button class="glass level" data-level="3"><span class="level-dot lvl3"></span>Muy &iacute;ntimas<em>solo si los dos quieren. Sin presi&oacute;n.</em></button>
+    </div>
+  </div>
+
+  <div class="quiz-play hidden" id="quizPlay">
+    <div class="quiz-top">
+      <button class="mini-back" id="quizBack">&larr; niveles</button>
+      <div class="progress"><div class="progress-bar" id="quizProgress"></div></div>
+    </div>
+    <div class="glass quiz-card" id="quizCard">
+      <p class="q-level" id="qLevel"></p>
+      <h3 class="q-text" id="qText"></h3>
+      <div class="q-options" id="qOptions"></div>
+      <textarea class="q-open" id="qOpen" placeholder="&iquest;Quieres agregar algo? Escr&iacute;belo aqu&iacute;... (opcional)"></textarea>
+      <div class="quiz-nav">
+        <button class="btn ghost quiz-prev" id="prevQ">&larr; Anterior</button>
+        <button class="btn primary quiz-next" id="nextQ">Siguiente &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEMORAMA ============ -->
+<section class="screen" id="memory">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <h2 class="section-title">Memorama</h2>
+  <p class="section-sub">Empareja los s&iacute;mbolos. <span id="memStats">Movimientos: 0</span></p>
+  <div class="mem-grid" id="memGrid"></div>
+  <div class="mem-win glass hidden" id="memWin">
+    <p>&iexcl;Listo! Lo resolviste en <strong id="memMoves">0</strong> movimientos.</p>
+    <button class="btn ghost" id="memReset">Jugar otra vez</button>
+  </div>
+</section>
+
+<!-- ============ RULETA ============ -->
+<section class="screen" id="roulette">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <h2 class="section-title">Ruleta de preguntas</h2>
+  <p class="section-sub">Gira y responde lo primero que se te venga.</p>
+  <div class="wheel-wrap">
+    <div class="wheel-pointer"></div>
+    <div class="wheel" id="wheel"></div>
+  </div>
+  <button class="btn primary" id="spinBtn">Girar</button>
+  <div class="glass wheel-result hidden" id="wheelResult">
+    <p class="wheel-q" id="wheelQ"></p>
+    <textarea class="q-open" id="wheelAnswer" placeholder="Escribe tu respuesta aqu&iacute;..."></textarea>
+    <button class="btn ghost" id="wheelSave">Guardar respuesta</button>
+  </div>
+</section>
+
+<!-- ============ VERDADERO / FALSO ============ -->
+<section class="screen" id="truefalse">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <h2 class="section-title">&iquest;Qu&eacute; tanto nos conocemos?</h2>
+  <p class="section-sub">Verdadero o falso. <span id="tfScore">0 / 0</span></p>
+  <div class="glass tf-card" id="tfCard">
+    <h3 class="tf-text" id="tfText"></h3>
+    <div class="tf-btns">
+      <button class="btn tf-btn" data-answer="true">Verdadero</button>
+      <button class="btn tf-btn" data-answer="false">Falso</button>
+    </div>
+    <p class="tf-feedback hidden" id="tfFeedback"></p>
+    <button class="btn ghost hidden" id="tfNext">Siguiente &rarr;</button>
+  </div>
+</section>
+
+<!-- ============ QUE PREFIERES ============ -->
+<section class="screen" id="would">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <h2 class="section-title">&iquest;Qu&eacute; prefieres?</h2>
+  <p class="section-sub">Elige un lado. Luego plat&iacute;came por qu&eacute;.</p>
+  <div class="would-card">
+    <button class="glass would-opt" id="wouldA"></button>
+    <div class="would-or">o</div>
+    <button class="glass would-opt" id="wouldB"></button>
+  </div>
+  <button class="btn ghost" id="wouldNext">Otra &rarr;</button>
+</section>
+
+<!-- ============ NUESTRA HISTORIA ============ -->
+<section class="screen" id="timeline">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <h2 class="section-title">Nuestra historia</h2>
+  <p class="section-sub">Toca cada estrella. Fuimos armando esto poco a poco.</p>
+  <div class="timeline" id="timelineList"></div>
+</section>
+
+<!-- ============ RAZONES ============ -->
+<section class="screen" id="reasons">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <h2 class="section-title">Razones por las que te amo</h2>
+  <p class="section-sub">Toca cualquiera para descubrirla. <span id="reasonsCount"></span></p>
+  <div class="reasons-grid" id="reasonsGrid"></div>
+</section>
+
+<!-- ============ NUESTRAS FOTOS (carrusel) ============ -->
+<section class="screen" id="gallery">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <h2 class="section-title">Nuestras fotos</h2>
+  <p class="section-sub">Desliza o usa las flechas. Toca una foto para verla grande.</p>
+
+  <div class="carousel-wrap">
+    <button class="car-arrow car-prev" id="carPrev" aria-label="anterior">&#8249;</button>
+    <div class="carousel glass" id="carousel">
+      <div class="car-track" id="carTrack"></div>
+    </div>
+    <button class="car-arrow car-next" id="carNext" aria-label="siguiente">&#8250;</button>
+  </div>
+  <div class="car-dots" id="carDots"></div>
+  <p class="car-caption" id="carCaption"></p>
+</section>
+
+<!-- Lightbox (foto en grande) -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="cerrar">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- ============ CARTA FINAL ============ -->
+<section class="screen" id="letter">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <div class="envelope glass" id="envelope">
+    <div class="env-flap"></div>
+    <p class="env-hint">toca para abrir</p>
+  </div>
+  <div class="glass letter-card hidden" id="letterCard">
+    <p class="letter-body">
+      Despu&eacute;s de m&aacute;s de dos a&ntilde;os sigo descubri&eacute;ndote, y eso es lo que m&aacute;s me gusta.<br><br>
+      No importa cu&aacute;nto respondas o dejes de responder aqu&iacute; &mdash; esto no es un examen.
+      Es solo una excusa bonita para sentarnos un rato y platicar como al principio.<br><br>
+      Gracias por seguir eligi&eacute;ndome. Yo te sigo eligiendo a ti, todos los d&iacute;as.
+    </p>
+    <p class="letter-sign">&mdash; con todo mi cari&ntilde;o</p>
+  </div>
+</section>
+
+<!-- ============ PARA TI (lectura de respuestas) ============ -->
+<section class="screen" id="vault">
+  <button class="back" data-go="menu">&larr; volver</button>
+  <h2 class="section-title">Para ti &#128274;</h2>
+  <p class="section-sub">Todo lo que respondi&oacute;, guardado aqu&iacute;.</p>
+  <div class="vault-actions">
+    <button class="btn ghost" id="vaultCopy">Copiar todo</button>
+    <button class="btn ghost" id="vaultDownload">Descargar .txt</button>
+    <button class="btn ghost danger" id="vaultClear">Borrar todo</button>
+  </div>
+  <div class="glass vault-box" id="vaultBox"></div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
