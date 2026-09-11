@@ -1,0 +1,21 @@
+COMO PONER TUS FOTOS
+====================
+
+1. Pon aqui tus fotos con estos nombres exactos:
+   1.jpg
+   2.jpg
+   3.jpg
+   4.jpg
+   5.jpg
+
+2. Deben ser archivos .jpg (si son .png, cambia la
+   extension en script.js donde dice "fotos/1.jpg", etc.)
+
+3. Puedes tener mas o menos de 5 fotos. Si quieres cambiar
+   la cantidad o los textos, edita la lista PHOTOS en script.js.
+
+4. Sube esta carpeta "fotos" (con tus imagenes dentro) a
+   GitHub, dentro del repositorio, junto a index.html.
+
+Si una foto no aparece, revisa que el nombre coincida
+exactamente (mayusculas/minusculas cuentan).
